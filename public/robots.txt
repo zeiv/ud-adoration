@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /caseadilla
+Disallow: /admin
+
+Allow: /
