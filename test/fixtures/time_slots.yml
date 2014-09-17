@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  time: 2014-09-16 21:17:35
+  person_id: 1
+
+two:
+  time: 2014-09-16 21:17:35
+  person_id: 1

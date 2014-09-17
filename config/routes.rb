@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
+
+	#Caseadilla routes
+	namespace :caseadilla do
+		resources :time_slots
+		resources :reminders
+		resources :people
+	end
+
+  resources :time_slots, only: [:destroy]
+
   devise_for :users
+  root "caseadilla/caseadilla_user_sessions#new"
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

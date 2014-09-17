@@ -16,9 +16,12 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'caseadilla'
 gem 'resque'
+gem 'resque-scheduler'
 gem 'puma'
 gem 'foreman'
 gem 'redis'
+gem 'simple_form'
+gem 'figaro'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

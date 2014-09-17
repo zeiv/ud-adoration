@@ -1,2 +1,21 @@
 /* CASEIN CUSTOM */
 /* Use this file for your project-specific Caseadilla CSS */
+
+input.caseadilla-check-boxes {
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  float: left;
+}
+
+input.caseadilla-check-boxes + label {
+  position: relative;
+  top: 0.25em;
+  margin-left: 2em;
+  display: block;
+  font-weight: 300;
+}
+
+input.caseadilla-check-boxes.hours_before + label:after {
+  content: " hours before";
+}

@@ -1,7 +1,7 @@
 authorization do
 
   role :admin do
-    has_permission_on :caseadilla_users, to: :manage
+    has_permission_on :caseadilla_users, to: [:manage, :change_password]
     has_permission_on :caseadilla_roles, to: :manage
   end
 
