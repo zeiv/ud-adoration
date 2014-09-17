@@ -7,6 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 roles = Role.create([
-  {title: 'admin'},
-  {title: 'user'}
+  {title: 'admin', id: 1},
+  {title: 'user', id: 2}
 ]) if Role.count == 0
+
+users = User.create([
+  {first_name: 'Xavier', last_name: 'Bick', email: 'fxb9500@gmail.com', password: 'CHANGEME', role: Role.first}
+]) if User.count == 0
