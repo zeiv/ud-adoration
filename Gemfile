@@ -22,6 +22,8 @@ gem 'foreman'
 gem 'redis'
 gem 'simple_form'
 gem 'figaro'
+gem "devise"
+gem "declarative_authorization", git: "git://github.com/zeiv/declarative_authorization", branch: "1.0.0"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -46,8 +48,3 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
-
-gem "simple_form"
-gem "devise"
-gem "declarative_authorization", git: "git://github.com/zeiv/declarative_authorization", branch: "1.0.0"

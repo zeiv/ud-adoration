@@ -37,7 +37,7 @@ GEM
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
     builder (3.2.2)
-    caseadilla (0.0.7)
+    caseadilla (0.0.8)
       caseadilla
       declarative_authorization (>= 0.5.7)
       devise (>= 3.2)
