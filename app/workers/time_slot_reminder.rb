@@ -1,5 +1,5 @@
 class TimeSlotReminder
-  @queue = :default
+  @queue = :emails
 
   def self.perform(person_id, time_slot_id)
     person = Person.find person_id

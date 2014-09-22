@@ -16,7 +16,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'caseadilla'
 gem 'resque'
-gem 'resque-scheduler'
+gem 'clockwork'
 gem 'puma'
 gem 'foreman'
 gem 'redis'

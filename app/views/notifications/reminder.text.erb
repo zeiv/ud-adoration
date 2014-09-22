@@ -1,8 +1,8 @@
 Hi <%= @person.name %>,
 
-This is to remind you that you have signed up for Adoration at the University of Dallas at:
+This is to remind you that you have signed up for Adoration at the University of Dallas on:
 
-<%= @time_slot.time.strftime("%l:%M%P on %A, %B %-m") %>
+<%= @time_slot.day %> at <%= @time_slot.time.strftime("%l:%M%P") %>
 
 God bless,
 Some people

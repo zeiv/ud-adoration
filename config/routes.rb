@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 		resources :time_slots
 		resources :reminders
 		resources :people
+    get action: 'index', controller: 'home'
 	end
 
   resources :time_slots, only: [:destroy]

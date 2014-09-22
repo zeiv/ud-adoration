@@ -25,6 +25,7 @@ module Caseadilla
     end
 
     def create
+      params = person_params
       @person = Person.new person_params
     
       if @person.save
@@ -61,7 +62,7 @@ module Caseadilla
     private
       
       def person_params
-        params.require(:person).permit(:name, :email, :time, time_slots_attributes: [:time, :id], reminder_ids: [])
+        params.require(:person).permit(:name, :email, :time, time_slots_attributes: [:time, :day, :id], reminder_ids: [])
       end
 
   end
