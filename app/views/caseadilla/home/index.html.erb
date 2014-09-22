@@ -1,0 +1,30 @@
+<table class='table'>
+    <thead>
+      <% 0.upto(@possible_time_slots.first.last.length).each do |row| %>
+        <tr>
+          <% 0.upto(@possible_time_slots.length-1).each do |column| %>
+            <% if row == 0 && column < 4 %>            
+      <th><%= @possible_time_slots.keys[column] %></th>
+            <% elsif row == 0 && column == 4 %>
+      <th><%= @possible_time_slots.keys[column] %></th>
+    </thead>
+  <tbody>
+            <% else %>
+              <td>
+                <% current_time_slot_time = @possible_time_slots[@possible_time_slots.keys[column]][row - 1].strftime('%l:%M%P') %>
+                <h5><%= current_time_slot_time %></h5>
+                <ul>
+                  <% @filled_time_slots[@filled_time_slots.keys[column]].each do |ts| %>
+                      <% if ts.time.strftime('%l:%M%P') == current_time_slot_time %>
+                        <li><%= link_to ts.person.name, caseadilla_person_path(ts.person) %></li>
+                      <% end %>
+                  <% end %>
+                </ul>
+                <%= link_to 'Add person to this slot', new_caseadilla_person_path(day: @possible_time_slots.keys[column], time: @possible_time_slots[@possible_time_slots.keys[column]][row - 1]) %>
+              </td>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
