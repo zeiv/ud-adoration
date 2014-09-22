@@ -8,7 +8,7 @@ module Clockwork
   # required to enable database syncing support
   Clockwork.manager = DatabaseEvents::Manager.new
 
-  sync_database_events model: TimeSlot, every: 1.minute do |time_slot|
+  sync_database_events model: TimeSlot, every: 2.minute do |time_slot|
     # Send emails with Resque
     time_slot.queue_reminder
   end
