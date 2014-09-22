@@ -21,6 +21,10 @@ class TimeSlot < ActiveRecord::Base
     604800
   end
 
+  def tz
+    "Central Time (US & Canada)"
+  end
+
   def at
     # at_array = []
     # person.reminders.each do |reminder|
