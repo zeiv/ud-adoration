@@ -27,6 +27,7 @@ class TimeSlot < ActiveRecord::Base
     #   at_array << "#{day} #{(time - reminder.hours_before.hours).strftime('%H:%M')}"
     # end
     # return at_array
-    "#{day} #{(time - person.reminders.first.hours_before.hours).strftime('%H:%M')}"
+    time_to_parse = "#{day} #{time.strftime('%H:%M')}"
+    "#{(DateTime.parse(time_to_parse) - person.reminders.first.hours_before.hours).strftime('%A %H:%M')}"
   end
 end
