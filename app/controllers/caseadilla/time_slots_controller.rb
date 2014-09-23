@@ -19,7 +19,7 @@ module Caseadilla
   
     def new
       @caseadilla_page_title = 'Add a new time slot'
-    	@time_slot = TimeSlot.new
+    	@time_slot = TimeSlot.build
     end
 
     def create

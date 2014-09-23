@@ -19,3 +19,22 @@ input.caseadilla-check-boxes + label {
 input.caseadilla-check-boxes.hours_before + label:after {
   content: " hours before";
 }
+
+#content table.table.table-bordered td ul.list-group, #content table.table.table-bordered td li.list-group-item {
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+}
+
+#content table.table.table-bordered td a {
+  padding: 0;
+  &:hover {
+    text-decoration: none;
+    color: #707070;
+  }
+}
+
+#content table.table.table-bordered td > a {
+  text-decoration: underline;
+  padding-bottom: 4px;
+}

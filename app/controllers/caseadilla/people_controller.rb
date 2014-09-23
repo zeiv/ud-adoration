@@ -21,7 +21,12 @@ module Caseadilla
     def new
       @caseadilla_page_title = 'Add a new person'
     	@person = Person.new
-      @person.time_slots.build
+      @params = params
+      unless params['day'].nil? && params['time'].nil?
+        @person.time_slots.build day: params['day'], time: (DateTime.parse(params['time']) - 1.hour)
+      else
+        @person.time_slots.build
+      end
     end
 
     def create
@@ -30,7 +35,7 @@ module Caseadilla
     
       if @person.save
         flash[:notice] = 'Person created'
-        redirect_to caseadilla_people_path
+        redirect_to caseadilla_root_path
       else
         flash.now[:warning] = 'There were problems when trying to create a new person'
         render :action => :new
@@ -44,7 +49,7 @@ module Caseadilla
     
       if @person.update_attributes person_params
         flash[:notice] = 'Person has been updated'
-        redirect_to caseadilla_people_path
+        redirect_to caseadilla_root_path
       else
         flash.now[:warning] = 'There were problems when trying to update this person'
         render :action => :show
