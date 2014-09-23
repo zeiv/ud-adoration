@@ -6,5 +6,19 @@ module Caseadilla
       @possible_time_slots = Hash[weekdays.collect { |d| [d, times] }]
       @filled_time_slots = Hash[weekdays.collect { |d| [d, TimeSlot.on_day(d).references(:person)] }]
     end
+
+    def email
+      @email_group_options = Date::DAYNAMES[1..-2].dup
+    end
+
+    def send_email
+      subject = params['subject']
+      message = params['message'].first
+      people = Person.joins(:time_slots).where(time_slots: {day: params['groups']}).pluck(:email)
+      if Notifications.custom(people, subject, message).deliver
+        flash[:notice] = 'Email has been sent'
+        redirect_to caseadilla_root_path
+      end
+    end
   end
 end

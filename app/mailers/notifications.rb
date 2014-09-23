@@ -12,4 +12,10 @@ class Notifications < ActionMailer::Base
 
     mail to: @person.email, subject: 'Adoration Reminder'
   end
+
+  def custom(emails, subject, message)
+    @message = message
+
+    mail to: emails, subject: subject
+  end
 end
