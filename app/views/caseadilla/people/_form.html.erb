@@ -29,6 +29,6 @@
     </div>
   </div>
   <div class="col-sm-6">
-    <%= caseadilla_collection_check_boxes f, f.object, :reminder_ids, Reminder.all, :id, :hours_before, class: 'hours_before caseadilla-check-boxes', checked: true, caseadilla_label: 'Reminders' %>
+    <%= caseadilla_collection_check_boxes f, f.object, :reminder_ids, Reminder.all, :id, :hours_before, class: 'hours_before caseadilla-check-boxes', caseadilla_label: 'Reminders' %>
   </div>
 </div>
