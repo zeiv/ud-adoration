@@ -3,11 +3,29 @@
 
 jQuery ($) ->
   $(document).on 'ready page:load', ->
+    getUrlParameter = (sParam) ->
+      sPageURL = window.location.search.substring(1)
+      sURLVariables = sPageURL.split("&")
+      i = 0
+      while i < sURLVariables.length
+        sParameterName = sURLVariables[i].split("=")
+        return sParameterName[1]  if sParameterName[0] is sParam
+        i++
+
+jQuery ($) ->
+  $(document).on 'ready page:load', ->
+    $('td').has('li').attr('class', 'success')
+
+jQuery ($) ->
+  $(document).on 'ready page:load', ->
     if $('.duplicatable-nested-form').length
 
       nestedForm = $('.duplicatable-nested-form').last().clone()
-      $('.duplicatable-nested-form').last().hide()
-      $('.duplicatable-nested-form').last().children().attr("disabled", "disabled")
+      if window.location.search == ''
+        $('.duplicatable-nested-form').last().hide()
+        $('.duplicatable-nested-form').last().children().attr("disabled", "disabled")
+      else
+        $('input.hours_before').first().prop('checked', 'true')
 
       # $(".destroy-duplicate-nested-form:first").remove()
 

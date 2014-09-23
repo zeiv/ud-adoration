@@ -8,7 +8,7 @@ module Caseadilla
 
     # Filename of logo image. Ideally, it should be a transparent PNG around 160x30px
     def caseadilla_config_logo
-      'caseadilla/caseadilla.png'
+      'veneremur-wordmark-small.png'
     end
 
     # The server hostname where Caseadilla will run
