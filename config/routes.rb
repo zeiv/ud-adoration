@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 		resources :reminders
 		resources :people
     get action: 'index', controller: 'home'
+    get 'email', action: 'email', controller: 'home', as: 'email'
+    post 'send_email', action: 'send_email', controller: 'home', as: 'send_email'
 	end
 
   resources :time_slots, only: [:destroy]

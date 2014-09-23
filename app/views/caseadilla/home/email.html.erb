@@ -1,0 +1,32 @@
+<h2>Send custom email</h2>
+
+<%= form_tag caseadilla_send_email_path, method: :post do %>
+
+  <div class="row">
+    <div class="col-sm-8 form-group">
+      <%= label_tag :subject, 'Subject' %>
+      <%= text_field_tag :subject, nil, class: 'form-control' %>
+    </div>
+    <div class="col-sm-4 form-group">
+      <%= label_tag :groups, 'Groups (Ctrl/Cmd click to select multiple)' %>
+      <%= select_tag :groups, options_for_select(@email_group_options), multiple: true, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 form-group">
+      <%= label_tag :message, 'Email body' %>
+      <%= text_area(:message, nil, class: 'form-control wysihtml5', rows: 16) %>
+    </div>
+  </div>
+  
+  <p class="submits">
+    <%= link_to 'Cancel', :back, :class => 'btn btn-mini btn-danger' %>
+    <%= submit_tag "Send email", :class => "btn btn-mini btn-primary" %>
+  </p>
+
+<% end %>
+
+<%= content_for :sidebar do %>
+  <li><%= link_to "#{caseadilla_show_icon "th-list"}Back".html_safe, :back %></li>
+<% end %>
