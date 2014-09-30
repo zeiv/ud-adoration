@@ -4,7 +4,7 @@
 <%= simple_format(@person.reminders.first.message).html_safe %>This is to remind you that you have signed up for Adoration at the University of Dallas on:
 </p>
 
-<h3><%= @time_slot.day %> at <%= @time_slot.time.strftime("%l:%M%P") %></h3>
+<h3><%= @time_slot_text %></h3>
 
 <p>
 God Bless,<br>
