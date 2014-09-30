@@ -1,6 +1,6 @@
 <table class='table table-bordered'>
     <thead>
-      <% 0.upto(@possible_time_slots.first.last.length).each do |row| %>
+      <% 0.upto(@possible_time_slots[@possible_time_slots.keys.last].length).each do |row| %>
         <tr>
           <% 0.upto(@possible_time_slots.length-1).each do |column| %>
             <% if row == 0 && column < 4 %>            
@@ -10,19 +10,23 @@
     </thead>
   <tbody>
             <% else %>
-              <td class='danger'>
-                <% current_time_slot_time = @possible_time_slots[@possible_time_slots.keys[column]][row - 1].strftime('%l:%M%P') %>
-                <% current_time_slot_end = (@possible_time_slots[@possible_time_slots.keys[column]][row - 1] + 30.minutes).strftime('%l:%M%P') %>
-                <h4 class='text-center'><%= current_time_slot_time %> - <%= current_time_slot_end %></h4>
-                <ul class='list-group'>
-                  <% @filled_time_slots[@filled_time_slots.keys[column]].each do |ts| %>
-                      <% if ts.time.strftime('%l:%M%P') == current_time_slot_time %>
-                        <li class='list-group-item list-group-item-success'><%= link_to ts.person.name, caseadilla_person_path(ts.person) %></li>
-                      <% end %>
-                  <% end %>
-                </ul>
-                <%= link_to 'Add person to this slot', new_caseadilla_person_path(day: @possible_time_slots.keys[column], time: @possible_time_slots[@possible_time_slots.keys[column]][row - 1].strftime('%l:%M%P CST')), class: 'text-center' %>
-              </td>
+              <% if @possible_time_slots[@possible_time_slots.keys[column]][row - 1].nil? %>
+                <td class='gray text-center'><h4>Mass</h4></td>
+              <% else %>
+                <td class='danger'>
+                  <% current_time_slot_time = @possible_time_slots[@possible_time_slots.keys[column]][row - 1].strftime('%l:%M%P') %>
+                  <% current_time_slot_end = (@possible_time_slots[@possible_time_slots.keys[column]][row - 1] + 30.minutes).strftime('%l:%M%P') %>
+                  <h4 class='text-center'><%= current_time_slot_time %> - <%= current_time_slot_end %></h4>
+                  <ul class='list-group'>
+                    <% @filled_time_slots[@filled_time_slots.keys[column]].each do |ts| %>
+                        <% if ts.time.strftime('%l:%M%P') == current_time_slot_time %>
+                          <li class='list-group-item list-group-item-success'><%= link_to ts.person.name, caseadilla_person_path(ts.person) %></li>
+                        <% end %>
+                    <% end %>
+                  </ul>
+                  <%= link_to 'Add new person to this slot', new_caseadilla_person_path(day: @possible_time_slots.keys[column], time: @possible_time_slots[@possible_time_slots.keys[column]][row - 1].strftime('%l:%M%P CST')), class: 'text-center' %>
+                </td>
+              <% end %>
             <% end %>
           <% end %>
         </tr>

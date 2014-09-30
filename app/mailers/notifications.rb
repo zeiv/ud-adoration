@@ -6,9 +6,9 @@ class Notifications < ActionMailer::Base
   #
   #   en.notifications.reminder.subject
   #
-  def reminder(person, time_slot)
+  def reminder(person, time_slots)
     @person = person
-    @time_slot = time_slot
+    @time_slot_text = "#{time_slots.first.day} #{time_slots.first.time.strftime('%l:%M%P')} - #{(time_slots.last.time + 30.minutes).strftime('%l:%M%P')}"
 
     mail to: @person.email, subject: 'Adoration Reminder'
   end

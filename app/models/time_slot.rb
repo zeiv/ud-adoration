@@ -1,9 +1,10 @@
 class TimeSlot < ActiveRecord::Base
   belongs_to :person
   scope :on_day, -> (day) {where day: day}
+  scope :by_time, -> {order '"time" (time) ASC'}
 
   def queue_reminder
-    if last_sent_at.nil? || last_sent_at < 20.minutes.ago
+    if last_sent_at.nil? || last_sent_at < 12.hours.ago
       Resque.enqueue(TimeSlotReminder, person.id, id)
       self.last_sent_at = Time.zone.now
       self.save
