@@ -1,3 +1,10 @@
+<% if @system_enabled.boolean_value == false %>
+  <div class='alert alert-warning'>
+  <h3 class='text-warning'>Warning: System Disabled</h3>
+    <p>No emails will be sent because the system is currently disabled.  You can enable it again by going to the <%= link_to 'config', caseadilla_system_config_path, class: 'alert-link' %> page.</p><br>
+  </div>
+<% end %>
+
 <table class='table table-bordered'>
     <thead>
       <% 0.upto(@possible_time_slots[@possible_time_slots.keys.last].length).each do |row| %>

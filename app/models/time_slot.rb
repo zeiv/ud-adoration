@@ -6,8 +6,6 @@ class TimeSlot < ActiveRecord::Base
   def queue_reminder
     if last_sent_at.nil? || last_sent_at < 12.hours.ago
       Resque.enqueue(TimeSlotReminder, person.id, id)
-      self.last_sent_at = Time.zone.now
-      self.save
     end
   end
 

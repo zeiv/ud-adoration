@@ -4,10 +4,14 @@ class TimeSlotReminder
   def self.perform(person_id, time_slot_id)
     person = Person.find person_id
     time_slot = person.time_slots.find time_slot_id
-    time_slot.class.transaction do
-      time_slots = get_consecutive_time_slots(person, time_slot)
-      set_sent_at!(time_slots)
-      Notifications.reminder(person, time_slots).deliver
+    if ConfigVar.find_by(name: :system_enabled).boolean_value == true
+      time_slot.class.transaction do
+        time_slots = get_consecutive_time_slots(person, time_slot)
+        set_sent_at!(time_slots)
+        Notifications.reminder(person, time_slots).deliver
+      end
+    else
+      puts "System disabled: email not sent.\n#{TimeSlot.find(time_slot_id).inspect}"
     end
   end
 

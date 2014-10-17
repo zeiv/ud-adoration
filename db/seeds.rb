@@ -14,3 +14,7 @@ roles = Role.create([
 users = User.create([
   {first_name: 'Xavier', last_name: 'Bick', email: 'fxb9500@gmail.com', password: 'CHANGEME', role: Role.find_by(title: 'admin')}
 ]) if User.count == 0
+
+config_vars = ConfigVar.create([
+  {name: :system_enabled.to_s, boolean_value: true}
+]) if ConfigVar.count == 0
