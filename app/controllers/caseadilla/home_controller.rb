@@ -1,6 +1,7 @@
 module Caseadilla
   class HomeController < Caseadilla::CaseadillaController
     def index
+      @system_enabled = ConfigVar.find_by(name: :system_enabled)
       weekdays = Date::DAYNAMES[1..-2].dup
       times = (DateTime.parse('8:00am CST').to_i..DateTime.parse('11:30am CST').to_i).step(15.minutes).map{|t| Time.at(t).localtime(Time.zone.utc_offset).to_datetime}
       times << nil
@@ -18,6 +19,30 @@ module Caseadilla
       possible_time_slots_in_progress['Friday'] = times_for_friday
       @possible_time_slots = possible_time_slots_in_progress
       @filled_time_slots = Hash[weekdays.collect { |d| [d, TimeSlot.on_day(d).references(:person)] }]
+    end
+
+    def system_config
+      @system_enabled = ConfigVar.find_by(name: :system_enabled)
+    end
+
+    def disable_system
+      @system_enabled = ConfigVar.find_by(name: :system_enabled)
+      @system_enabled.boolean_value = false
+      if @system_enabled.save
+        redirect_to caseadilla_root_path, notice: 'The system has been disabled.  No emails will be sent.'
+      else
+        redirect_to :back, alert: 'There was a problem disabling the system.'
+      end
+    end
+
+    def enable_system
+      @system_enabled = ConfigVar.find_by(name: :system_enabled)
+      @system_enabled.boolean_value = true
+      if @system_enabled.save
+        redirect_to caseadilla_root_path, notice: 'The system has been enabled. Emails will be sent as scheduled.'
+      else
+        redirect_to :back, alert: 'There was a problem enabling the system.'
+      end
     end
 
     def email

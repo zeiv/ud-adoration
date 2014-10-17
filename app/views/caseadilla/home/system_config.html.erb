@@ -1,0 +1,11 @@
+<section class='col-sm-6 col-sm-offset-3'>
+  <div class='system_enabled'>
+    <% if @system_enabled.boolean_value == true %>
+      <h1 class='text-success text-center'>System enabled</h1>
+      <%= link_to 'Disable system', caseadilla_disable_system_path, class: 'btn btn-block btn-lg btn-danger', method: :delete %>
+    <% else %>
+      <h1 class='text-danger text-center'>System disabled</h1>
+      <%= link_to 'Enable system', caseadilla_enable_system_path, class: 'btn btn-block btn-lg btn-success', method: :post %>
+    <% end %>
+  </div>
+</section>

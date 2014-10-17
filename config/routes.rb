@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 		resources :reminders
 		resources :people
     get action: 'index', controller: 'home'
+    get 'system_config', action: 'system_config', controller: 'home', as: 'system_config'
+    delete 'disable_system', action:'disable_system', controller: 'home', as: 'disable_system'
+    post 'enable_system', action:'enable_system', controller: 'home', as: 'enable_system'
     get 'email', action: 'email', controller: 'home', as: 'email'
     post 'send_email', action: 'send_email', controller: 'home', as: 'send_email'
 	end
